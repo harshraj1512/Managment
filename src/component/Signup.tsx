@@ -1,22 +1,32 @@
 // src/components/Signup.tsx
 import React, { useState } from 'react';
-import { Form, Input, Button, Typography } from 'antd';
+import { Form, Input, Button, } from 'antd';
 import logo from "../img/company.png"
+import { useNavigate } from 'react-router-dom';
 import earth from "../img/earth.png"
 import "../style/Signup.scss"
 
 
-const { Title } = Typography;
+
 const Signup: React.FC = () => {
+    // State variables
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const navigate = useNavigate();
+
+    // Function to handle redirection
+    const handleLoginRedirect = () => {
+        navigate("/SignIn")
+    }
+
   
 
   return (
     <div className="signup-container">
+    {/* Welcome message and company logo */}
     <div className="welcome-container">
         <p className="Welcome-text">Welcome To</p>
         <div className="logo-container">
@@ -30,19 +40,27 @@ const Signup: React.FC = () => {
         </div>
     </div>
 
+
+    {/* logo image and sign-up form */}
+    <div className="earth-login-container">
+     <div className="earth-conatiner">
+     <img src={earth} alt="earth" className="earth-img" />
+     </div>
     <div className="login-body">
-    <p className="signup-title">Sign Up</p> {/* Added Sign Up text above the form */}
-    <Form >
+    <p className="signup-title">Sign Up</p> 
+
+    {/* Register form */}
+    <Form layout="vertical">
       <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please enter your name' }]}>
-        <Input value={name} onChange={(e) => setName(e.target.value)} />
+        <Input className="input-box" value={name} onChange={(e) => setName(e.target.value)} />
       </Form.Item>
 
       <Form.Item label="Email" name="email" rules={[{ required: true, message: 'Please enter your email' }]}>
-        <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input className="input-box" value={email} onChange={(e) => setEmail(e.target.value)} />
       </Form.Item>
 
       <Form.Item label="Password" name="password" rules={[{ required: true, message: 'Please enter your password' }]}>
-        <Input.Password value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input.Password className="input-box" value={password} onChange={(e) => setPassword(e.target.value)} />
       </Form.Item>
 
       <Form.Item label="Confirm Password" name="confirmPassword" rules={[
@@ -56,7 +74,7 @@ const Signup: React.FC = () => {
           },
         }),
       ]}>
-        <Input.Password value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+        <Input.Password className="input-box" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
       </Form.Item>
 
       <Form.Item>
@@ -64,7 +82,9 @@ const Signup: React.FC = () => {
       </Form.Item>
     </Form>
     <div>
-    <p className="login-link">Already Have Account? <span className="Login-button">Login here</span></p>
+        {/* Redirect to Login page */}
+        <p className="login-link">Already Have Account? <span className="Login-button" onClick={handleLoginRedirect}>SignIn here</span></p>
+    </div>
     </div>
     </div>
     </div>

@@ -18,16 +18,16 @@ body {
 
 .login-body {
     display: inline-flex;
-    height: 482px;
     padding: 40px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 18px;
+   // gap: 18px;
     flex-shrink: 0;
     border-radius: 8px;
-    background-color: #235E4A; /* Green background color */
+    background-color: #235E4A; 
     
 }
+
 
 .signup-title{
     color: #F3F3F3;
@@ -37,11 +37,22 @@ body {
     font-weight: 600;
     line-height: 150%;
     align-self: stretch;
+    margin: 0px;
+}
+
+.instruction-text {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #F3F3F3;
+}
+
+.input-box {
+    width: 300px; 
 }
 
 .welcome-container {
     width: 440px;
-    height: 294px;
     // position: absolute;
     top: 268px;
     left: 190px;
@@ -51,16 +62,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.welcome-text {
-    background-color: #fff;
+.Welcome-text {
+    color: #fff;
     font-family: "Open Sans";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 18px */
+    line-height: 150%; 
     text-transform: uppercase;
 }
 
@@ -69,8 +80,8 @@ body {
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 24px */
-    color: #9F9F9F; /* Change color to grey */
+    line-height: 150%; 
+    color: #9F9F9F; 
 }
 
 .last-text{
@@ -78,7 +89,7 @@ body {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 21px */
+    line-height: 150%; 
     color: #fff;
 }
 
@@ -94,6 +105,7 @@ body {
 
 .signup-button {
     display: flex;
+    width: 300px;
     padding: 12px 16px;
     justify-content: center;
     align-items: center;
@@ -101,6 +113,13 @@ body {
     align-self: stretch;
     border-radius: 4px;
     background-color:#2E9844 ;
+
+    /* Continue text */
+    font-family: "Open Sans";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
 }
 
 .login-link {
@@ -108,7 +127,7 @@ body {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 21px */
+    line-height: 150%; 
     color: #fff;
 }
 
@@ -119,5 +138,30 @@ body {
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
-    color: #4FA556;  
+    color: #4FA556;
+    cursor: pointer;
+}
+
+.earth-login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 39px;
+}
+
+.earth-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.earth-img {
+    width: 156px;
+    height: 152px;
+    flex-shrink: 0;
+}
+
+.login-body .ant-form-item-label > label {
+    color: #fff !important;
 }
