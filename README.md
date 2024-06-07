@@ -1,3 +1,9 @@
+# About the project
+Signup page 
+signin page
+Dashboard page
+firebase has been used to authentication and also token based authentication is done which is stored in localstorage
+website https://managmentassignment.netlify.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
