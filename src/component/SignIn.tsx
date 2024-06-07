@@ -5,6 +5,8 @@ import logo from "../img/company.png"
 import { useNavigate } from 'react-router-dom';
 import earth from "../img/earth.png"
 import "../style/Signup.scss"
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebase';
 
 
 
@@ -19,6 +21,16 @@ const SignIn: React.FC = () => {
     // Function to handle redirection
     const handleLoginRedirect = () => {
         navigate("/")
+    }
+
+    const handleSubmit = async(values: any) => {
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log("User logged in Successfully");
+            navigate("/dashboard")
+        } catch (error: any) {
+            console.log(error.message);
+        }
     }
 
   
@@ -49,7 +61,7 @@ const SignIn: React.FC = () => {
     <p className="instruction-text">Enter your registered Email ID to continue</p>
 
     {/* Login form */}
-    <Form layout="vertical">
+    <Form layout="vertical" onFinish={handleSubmit}>
 
       <Form.Item label="Email" name="email" rules={[{ required: true, message: 'Please enter your email' }]}>
         <Input className="input-box" value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -60,7 +72,7 @@ const SignIn: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" className="signup-button">Continue</Button>
+        <Button type="primary" htmlType="submit" className="signup-button">Continue</Button>
       </Form.Item>
     </Form>
     <div>

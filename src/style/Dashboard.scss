@@ -1,0 +1,46 @@
+body{
+    background-color: #fff;
+}
+
+.sider {
+    height: 100vh; // Set sider height to 100% of viewport height
+    padding: 18px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px; // Adjust height as necessary
+    margin: 16px;
+    margin-bottom: 15px;
+    
+    img {
+      width: 162px;
+      height: 35px;
+      flex-shrink: 0;
+    }
+}
+.menu-toggle {
+    font-size: 16px;
+    width: 64px;
+    height: 64px;
+  }
+  
+  .content {
+    margin: 24px 16px;
+    padding: 24px;
+    min-height: 280px;
+    border-radius: 4px;
+}
+
+.ant-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 158px;
+  }

@@ -1,10 +1,14 @@
 // src/components/Signup.tsx
 import React, { useState } from 'react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Form, Input, Button, } from 'antd';
 import logo from "../img/company.png"
 import { useNavigate } from 'react-router-dom';
 import earth from "../img/earth.png"
 import "../style/Signup.scss"
+import { auth, db } from './firebase';
+import { setDoc, doc } from 'firebase/firestore';
+
 
 
 
@@ -20,6 +24,24 @@ const Signup: React.FC = () => {
     // Function to handle redirection
     const handleLoginRedirect = () => {
         navigate("/SignIn")
+    }
+
+    const handleRegister = async (values: any) =>{
+        try {
+            await createUserWithEmailAndPassword(auth, values.email, values.password);
+            const user = auth.currentUser;
+            console.log(user);
+            if(user){
+                await setDoc(doc(db, "Users", user.uid), {
+                    email: user.email,
+                    name: values.name
+                });
+            }
+            console.log("User Registered Successfully!!");
+        } catch (error: any) {
+            console.log(error.message);
+
+        }
     }
 
   
@@ -50,7 +72,7 @@ const Signup: React.FC = () => {
     <p className="signup-title">Sign Up</p> 
 
     {/* Register form */}
-    <Form layout="vertical">
+    <Form layout="vertical" onFinish={handleRegister}>
       <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please enter your name' }]}>
         <Input className="input-box" value={name} onChange={(e) => setName(e.target.value)} />
       </Form.Item>
@@ -78,7 +100,7 @@ const Signup: React.FC = () => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" className="signup-button">Continue</Button>
+        <Button type="primary" htmlType="submit" className="signup-button">Continue</Button>
       </Form.Item>
     </Form>
     <div>
