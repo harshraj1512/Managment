@@ -1,5 +1,3 @@
-// App.tsx
-
 import React, { useState } from 'react';
 import {
   MenuFoldOutlined,
@@ -11,16 +9,35 @@ import {
   ExclamationCircleOutlined,
   TruckOutlined,
   LineChartOutlined,
-  StarOutlined
+  StarOutlined,
+  LoginOutlined
 } from '@ant-design/icons';
-import { Button, Layout, Menu } from 'antd';
+import { Button, Layout, Menu, Select, Avatar } from 'antd';
 import "../style/Dashboard.scss"; // Import the SCSS file
 import company from "../img/company.png"
+import Table1 from './Table1';
+import Table2 from './Table2';
+
 
 const { Header, Sider, Content } = Layout;
+const { Option } = Select;
 
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedButton, setSelectedButton] = useState('DATA ENTRY');
+
+  const handleButtonClick = (buttonName: string) => {
+    setSelectedButton(buttonName);
+  };
+
+  const renderContent = () => {
+    if (selectedButton === 'DATA ENTRY') {
+      return <Table1 />;
+    } else if (selectedButton === 'TRACKER') {
+      return <Table2 />;
+    }
+    return null;
+  };
 
   return (
     <Layout>
@@ -75,7 +92,7 @@ const App: React.FC = () => {
               label: 'Targets',
             },
             {
-              key: '8',
+              key: '9',
               icon: <LoginOutlined />,
               label: 'Logout',
             }
@@ -83,15 +100,57 @@ const App: React.FC = () => {
         />
       </Sider>
       <Layout>
-        <Header>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            className="menu-toggle" // Apply the class for styling
-          />
+      <Header className="custom-header">
+          <div className="top-row">
+            <div className="left-section">
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                className="menu-toggle"
+              />
+              <span className="view-name">View Name</span>
+              <Select defaultValue="North India Region" className="region-dropdown">
+                <Option value="North India Region">North India Region</Option>
+                {/* Add other options here */}
+              </Select>
+            </div>
+            <div className="right-section">
+              <div className="profile">
+                <span className="profile-name">John Doe</span>
+                <Avatar icon={<UserOutlined />} />
+              </div>
+            </div>
+          </div>
+          <div className="bottom-row">
+            <div className="middle-section">
+            <Button
+                className={selectedButton === 'DATA ENTRY' ? 'nav-item active' : 'nav-item'}
+                onClick={() => handleButtonClick('DATA ENTRY')}
+              >
+                DATA ENTRY
+              </Button>
+              <Button
+                className={selectedButton === 'TRACKER' ? 'nav-item active' : 'nav-item'}
+                onClick={() => handleButtonClick('TRACKER')}
+              >
+                TRACKER
+              </Button>
+            </div>
+            <div >
+            <span className="for-label">For: </span>
+            <Select defaultValue="FY 2023-24" className="fiscal-year-dropdown">
+            
+              <Option value="FY 2023-24" className="fiscal-year-option">FY 2023-24</Option>
+              {/* Add other options here */}
+            </Select>
+            <Button className="submit-button">Submit for Approval</Button>
+            </div>
+          </div>
         </Header>
-        <Content className="content">Content</Content> {/* Apply the class for styling */}
+        <Content className="content">
+          {renderContent()}
+        </Content>
       </Layout>
     </Layout>
   );

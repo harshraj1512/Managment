@@ -1,33 +1,37 @@
-body{
-    background-color: #fff;
-}
+/* Dashboard.scss */
 
-.sider {
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sider {
     height: 100vh; // Set sider height to 100% of viewport height
-    padding: 18px;
-    padding-bottom: 40px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-}
-
-.company-logo {
+  }
+  
+  .company-logo {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 64px; // Adjust height as necessary
-    margin: 16px;
-    margin-bottom: 15px;
-    
+    margin-bottom: 80px; // Adjust margin between logo and items
     img {
-      width: 162px;
-      height: 35px;
+      width: 115px;
+      height: 28px;
       flex-shrink: 0;
     }
-}
-.menu-toggle {
-    font-size: 16px;
-    width: 64px;
-    height: 64px;
+  }
+  
+  .menu-toggle {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
   }
   
   .content {
@@ -35,12 +39,101 @@ body{
     padding: 24px;
     min-height: 280px;
     border-radius: 4px;
-}
-
-.ant-menu {
+  }
+  
+  .ant-menu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px; // Adjust gap between items
     width: 158px;
+  }
+  
+  .left-section,
+  .middle-section,
+  .right-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-header {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .top-row,
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .view-name {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .region-dropdown,
+  .fiscal-year-dropdown {
+    padding: 5px;
+    margin-right: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-name {
+    margin-right: 10px;
+  }
+  
+  .middle-section {
+    display: flex;
+    margin-top: 5px;
+  }
+
+  .fiscal-year-dropdown {
+    margin-right: 10px; // Add margin between dropdown and button
+  }
+  
+  .submit-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+
+  .nav-item {
+    margin-right: 10px; // Add margin between items
+  }
+
+  .for-label {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    color: #333333;
+  }
+
+  .fiscal-year-option {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+    color: #333333;
+  }
+  
+  .content {
+    margin: 50px;
   }

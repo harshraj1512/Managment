@@ -5,7 +5,7 @@ import logo from "../img/company.png"
 import { useNavigate } from 'react-router-dom';
 import earth from "../img/earth.png"
 import "../style/Signup.scss"
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
 import { auth } from './firebase';
 
 
@@ -25,7 +25,11 @@ const SignIn: React.FC = () => {
 
     const handleSubmit = async(values: any) => {
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            const userCredential: UserCredential = await signInWithEmailAndPassword(auth, email, password);
+            //token based authentication
+            const user = userCredential.user;
+            const idToken = await user.getIdToken();
+            localStorage.setItem('token', idToken);
             console.log("User logged in Successfully");
             navigate("/dashboard")
         } catch (error: any) {
